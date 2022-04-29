@@ -5,9 +5,8 @@ class Triad {
 protected:
 	int x, y, z; 
 public:
-	int count = 0;
 	void add_x() {				//метод увеличения часов.
-		if (x > 24) {
+		if (x==24) {
 			x=0;
 		}
 		else{
@@ -15,7 +14,7 @@ public:
 		}
 	}
 	void add_y() {				//метод увеличения минут.
-		if(y > 60) {
+		if(y==59) {
 			add_x();
 			y=0;
 		}
@@ -24,9 +23,9 @@ public:
 		}
 	}
 	void add_z() {				//метод увеличения секунд.
-		if(z > 60) {
+		if(z==59) {
 			add_y();
-			y=0;
+			z=0;
 		}
 		else {
 			z++;
@@ -96,14 +95,12 @@ public:
 		setTime();
 		if (choice == 1) {
 			for(int i=0; i<add; i++){
-				cout<<i<<endl;
-				add_y(); //не работает вот это
+				add_y();
 			}
 		}
 		else if (choice == 2) {
 			for(int i=0; i<add; i++){
-				cout<<i<<endl;
-				add_z(); //и не работает вот это
+				add_z();
 			}
 		}
 		else {
@@ -112,24 +109,6 @@ public:
 		getTime();
 	}
 };
-
-//
-//void add_input() {
-//	cout << "Введите количество единиц времени: "; cin >> add;
-//	cout << endl;
-//	cout << "Введите 1 если добавить в минуты" << endl;
-//	cout << "Введите 2 если добавить в секунды" << endl;
-//	cin >> choice;
-//	if (choice == 1) {
-//		add_minute();
-//	}
-//	else if (choice == 2) {
-//		add_second();
-//	}
-//	else {
-//		throw string("Такой команды нет.");
-//	}
-//};
 
 
 int main() {
