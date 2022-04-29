@@ -1,8 +1,5 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
-
-int add = 0;
 
 class Triad {
 protected:
@@ -10,52 +7,29 @@ protected:
 public:
 	int count = 0;
 	void add_x() {				//метод увеличения часов.
-		if (count != 0) {
-			y += count;
-			if (add > 24) {
-				count = add / 24;
-				add = add - count * 24;
-				add_z();
-			}
-			else {
-				x += add;
-			}
-		}
-		else {
-			x += add;
-		}
 		if (x > 24) {
-			x = 0;
-			y = 0;
-			z = 0;
-			add *= 3600;
-			add_z();
+			x=0;
+		}
+		else{
+			x++;
 		}
 	}
 	void add_y() {				//метод увеличения минут.
-		if (count != 0) {
-			y += count;
-			if (add > 60) {
-				count = add / 60;
-				add = add - count * 60;
-				add_x();
-			}
-			else {
-				y += add;
-			}
+		if(y > 60) {
+			add_x();
+			y=0;
 		}
-		else {
-			y += add;
+		else{
+			y++;
 		}
 	}
 	void add_z() {				//метод увеличения секунд.
-		if (add > 60) {
-			count = add / 60;
-			add = add - count * 60;
+		if(z > 60) {
 			add_y();
+			y=0;
 		}
 		else {
-			z += add;
+			z++;
 		}
 	}
 	void set_hours(int& x){
@@ -113,6 +87,7 @@ public:
 
 	void add_input() {
 		int choice;
+		int add=0;
 		cout << "Введите количество единиц времени: "; cin >> add;
 		cout << endl;
 		cout << "Введите 1 если добавить в минуты" << endl;
@@ -121,11 +96,13 @@ public:
 		setTime();
 		if (choice == 1) {
 			for(int i=0; i<add; i++){
+				cout<<i<<endl;
 				add_y(); //не работает вот это
 			}
 		}
 		else if (choice == 2) {
 			for(int i=0; i<add; i++){
+				cout<<i<<endl;
 				add_z(); //и не работает вот это
 			}
 		}
